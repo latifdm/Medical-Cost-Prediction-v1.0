@@ -109,7 +109,7 @@ def preprocess_input(age, sex, height, weight, children, smoker, region):
 # 📦 Load Model (cached)
 # ---------------------------------------------------------------------------
 @st.cache_resource(show_spinner=False)
-def load_model(path: str = "model.pkl"):
+def load_model(path: str = "Logistic_Regression_Model.pkl"):
     """Muat model regressi tersimpan dalam file pickle."""
     with open(path, "rb") as f:
         return pickle.load(f)

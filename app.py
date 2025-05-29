@@ -114,13 +114,13 @@ def load_model(path: str = "Logistic_Regression_Model.pkl"):
     with open(path, "rb") as f:
         return pickle.load(f)
 
-try:
-    model = load_model()
-except FileNotFoundError:
-    st.error(
-        "⚠️ **model.pkl** tidak ditemukan. Pastikan file model sudah berada di folder yang sama dengan *app.py*."
-    )
-    st.stop()
+#try:
+#    model = load_model()
+#except FileNotFoundError:
+#    st.error(
+#        "⚠️ **model.pkl** tidak ditemukan. Pastikan file model sudah berada di folder yang sama dengan *app.py*."
+#    )
+#    st.stop()
 
 # ---------------------------------------------------------------------------
 # 🧮 Prediksi biaya

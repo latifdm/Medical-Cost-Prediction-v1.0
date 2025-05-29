@@ -55,15 +55,17 @@ if page == "Home":
         },
     ]
 
-    for m in members:
-        col_photo, col_info = st.columns([1, 3])
-        with col_photo:
-            st.image(m["photo"], width=90, caption=" ")
-        with col_info:
+    st.markdown("### 👥 Anggota Tim")
+
+    # Tampilkan 5 anggota dalam 1 baris horizontal
+    cols = st.columns(len(members))
+    for col, member in zip(cols, members):
+        with col:
+            st.image(member["photo"], width=100)
             st.markdown(
-                f"**{m['name']}**  \n[LinkedIn]({m['li']})"
+                f"**{member['name']}**  \n"
+                f"[Instagram]({member['ig']}) | [LinkedIn]({member['li']})"
             )
-        st.divider()
 
 # -----------------------------------------------------------------------------
 # 🤖  PAGE — Machine Learning App

@@ -19,7 +19,9 @@ with st.sidebar:
 if page == "Home":
     st.title("💊 Medical Cost Predictor App")
     st.markdown(
-        "Aplikasi Machine Learning ini di buat untuk memprediksi biaya medis tahunan ."
+        "Aplikasi Machine Learning ini di buat untuk memprediksi biaya medis tahunan pasien berdasarkan model Regresi yang telah dilatih sebelumnya dengan sumber dataset kaggle."
+        "Data source"
+        "Kaggle: Link https://www.kaggle.com/datasets/mirichoi0218/insurance?resource=download "
     )
 
     # ---------- Team section ----------

@@ -9,29 +9,71 @@ st.set_page_config(
     page_title="Medical Cost Prediction", page_icon="💊", layout="centered"
 )
 
-st.title("💊 Medical Cost Predictor App")
+with st.sidebar:
+    st.markdown("### Menu")
+    page = st.selectbox("", ["Home", "Machine Learning App"], index=0)
 
-st.markdown(
-    "Masukkan informasi pasien untuk memprediksi **biaya medis tahunan** menggunakan model regresi yang telah dilatih sebelumnya (Medical Cost Personal Dataset)."
-)
+# -----------------------------------------------------------------------------
+# 🏠  PAGE — Home
+# -----------------------------------------------------------------------------
+if page == "Home":
+    st.title("💊 Medical Cost Predictor App")
+    st.markdown(
+        "Masukkan informasi pasien untuk memprediksi **biaya medis tahunan** menggunakan model regresi yang telah dilatih sebelumnya (Medical Cost Personal Dataset)."
+    )
 
-desc_temp = """ ### Loan Prediction App 
-                This app is used by Credit team for deciding Loan Application
-                
-                #### Data Source
-                Kaggle: Link <Masukkan Link>
-                """
+    # ---------- Team section ----------
+    st.subheader("Delta Seekers Team")
+    {
+            "name": "Member 1",
+            "photo": "assets/member1.jpg",  # ganti path sesuai aset
+            "ig": "https://instagram.com/member1",
+            "li": "https://linkedin.com/in/member1",
+        },
+        {
+            "name": "Member 2",
+            "photo": "assets/member2.jpg",
+            "ig": "https://instagram.com/member2",
+            "li": "https://linkedin.com/in/member2",
+        },
+        {
+            "name": "Member 3",
+            "photo": "assets/member3.jpg",
+            "ig": "https://instagram.com/member3",
+            "li": "https://linkedin.com/in/member3",
+        },
+        {
+            "name": "Member 4",
+            "photo": "assets/member4.jpg",
+            "ig": "https://instagram.com/member4",
+            "li": "https://linkedin.com/in/member4",
+        },
+        {
+            "name": "Member 5",
+            "photo": "assets/member5.jpg",
+            "ig": "https://instagram.com/member5",
+            "li": "https://linkedin.com/in/member5",
+        },
+    ]
 
-def main():
-    menu = ["Home", "Machine Learning App"]
-    choice = st.sidebar.selectbox("Menu", menu)
+    for m in members:
+        col_photo, col_info = st.columns([1, 3])
+        with col_photo:
+            st.image(m["photo"], width=90, caption=" ")
+        with col_info:
+            st.markdown(
+                f"**{m['name']}**  \n[Instagram]({m['ig']}) | [LinkedIn]({m['li']})"
+            )
+        st.divider()
 
-    if choice == "Home":
-        st.subheader("Home")
-    elif choice == "Machine Learning App":
-        run_ml_app()
-
-def run_ml_app():
+# -----------------------------------------------------------------------------
+# 🤖  PAGE — Machine Learning App
+# -----------------------------------------------------------------------------
+elif page == "Machine Learning App":
+    st.title("💊 Medical Cost Predictor App")
+    st.markdown(
+        "Masukkan informasi pasien untuk memprediksi **biaya medis tahunan** menggunakan model regresi yang telah dilatih sebelumnya (Medical Cost Personal Dataset)."
+    )
     
     #Membuat Struktur Form
     left, right = st.columns((2,2))
@@ -114,6 +156,3 @@ except FileNotFoundError:
 # 🧮 Prediksi biaya
 # ---------------------------------------------------------------------------
 
-
-if __name__ == "__main__":
-    main()

@@ -9,7 +9,7 @@ st.set_page_config(
     page_title="Medical Cost Prediction", page_icon="💊", layout="centered"
 )
 
-st.title("💊 Medical Cost Predictor")
+st.title("💊 Medical Cost Predictor App")
 
 st.markdown(
     "Masukkan informasi pasien untuk memprediksi **biaya medis tahunan** menggunakan model regresi yang telah dilatih sebelumnya (Medical Cost Personal Dataset)."
@@ -39,10 +39,6 @@ def main():
         run_ml_app()
 
 def run_ml_app():
-    design = """<div style="padding:15px;">
-                    <h3 style="color:#fff">Medical Cost Prediction</h3>
-                </div
-             """
     st.markdown(design, unsafe_allow_html=True)
     
     #Membuat Struktur Form

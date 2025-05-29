@@ -52,7 +52,7 @@ def run_ml_app():
     smoker = right.selectbox('Apakah Merokok', ('Ya', 'Tidak'))
     height = left.number_input('Tinggi Badan')
     weight = right.number_input('Berat Badan')
-    children = left.selectbox("Jumlah Anak (dependents)", list(range(0, 6)), index=0)
+    children = left.selectbox("Jumlah Anak", list(range(0, 6)), index=0)
     region = right.selectbox('Lokasi Tinggal', ("southeast", "southwest", "northeast", "northwest"))
     predict_btn = st.button("Predict Medical Cost", type="primary")
 
@@ -114,29 +114,18 @@ def load_model(path: str = "Logistic_Regression_Model.pkl"):
     with open(path, "rb") as f:
         return pickle.load(f)
 
-#try:
-#    model = load_model()
-#except FileNotFoundError:
-#    st.error(
-#        "⚠️ **model.pkl** tidak ditemukan. Pastikan file model sudah berada di folder yang sama dengan *app.py*."
-#    )
-#    st.stop()
+try:
+    model = load_model()
+except FileNotFoundError:
+    st.error(
+        "⚠️ **model.pkl** tidak ditemukan. Pastikan file model sudah berada di folder yang sama dengan *app.py*."
+    )
+    st.stop()
 
 # ---------------------------------------------------------------------------
 # 🧮 Prediksi biaya
 # ---------------------------------------------------------------------------
-if predict_btn:
-    input_df = preprocess_input(age, sex, height, weight, children, smoker, region)
 
-    with st.spinner("Menghitung prediksi ..."):
-        prediction = model.predict(input_df)[0]
-
-    st.subheader("💵 Estimasi Biaya Medis Tahunan")
-    st.metric(label="Charges (USD)", value=f"${prediction:,.2f}")
-
-    # Detail input
-    with st.expander("Lihat detail input"):
-        st.dataframe(input_df, use_container_width=True)
 
 if __name__ == "__main__":
     main()

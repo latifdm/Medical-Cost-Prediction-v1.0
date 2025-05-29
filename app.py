@@ -24,6 +24,7 @@ if page == "Home":
 
     # ---------- Team section ----------
     st.subheader("Delta Seekers Team")
+    members = [
     {
             "name": "Member 1",
             "photo": "assets/member1.jpg",  # ganti path sesuai aset

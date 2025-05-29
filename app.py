@@ -15,8 +15,6 @@ st.markdown(
     "Masukkan informasi pasien untuk memprediksi **biaya medis tahunan** menggunakan model regresi yang telah dilatih sebelumnya (Medical Cost Personal Dataset)."
 )
 
-html_temp = 
-
 desc_temp = """ ### Loan Prediction App 
                 This app is used by Credit team for deciding Loan Application
                 
@@ -25,22 +23,15 @@ desc_temp = """ ### Loan Prediction App
                 """
 
 def main():
-    stc.html(html_temp)
     menu = ["Home", "Machine Learning App"]
     choice = st.sidebar.selectbox("Menu", menu)
 
     if choice == "Home":
         st.subheader("Home")
-        st.markdown(desc_temp, unsafe_allow_html=True)
     elif choice == "Machine Learning App":
         run_ml_app()
 
 def run_ml_app():
-    design = """<div style="padding:15px;">
-                    <h1 style="color:#fff">Loan Eligibility Prediction</h1>
-                </div
-             """
-    st.markdown(design, unsafe_allow_html=True)
     
     #Membuat Struktur Form
     left, right = st.columns((2,2))

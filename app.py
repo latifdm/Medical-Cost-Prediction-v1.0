@@ -26,7 +26,7 @@ if page == "Home":
     )    
 
     # ---------- Team section ----------
-    st.subheader("Delta Seekers Team")
+    st.subheader("👨‍⚕️ Delta Seekers Team")
     members = [
     {
             "name": "Ahmad Azhar Naufal Farizky",
@@ -55,16 +55,14 @@ if page == "Home":
         },
     ]
 
-    st.markdown("### 👥 Anggota Tim")
-
     # Tampilkan 5 anggota dalam 1 baris horizontal
     cols = st.columns(len(members))
     for col, member in zip(cols, members):
         with col:
-            st.image(member["photo"], width=100)
+            st.image(member["photo"], width=30)
             st.markdown(
                 f"**{member['name']}**  \n"
-                f"[Instagram]({member['ig']}) | [LinkedIn]({member['li']})"
+                f"[LinkedIn]({member['li']})"
             )
 
 # -----------------------------------------------------------------------------

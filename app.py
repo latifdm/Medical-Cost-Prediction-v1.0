@@ -15,10 +15,7 @@ st.markdown(
     "Masukkan informasi pasien untuk memprediksi **biaya medis tahunan** menggunakan model regresi yang telah dilatih sebelumnya (Medical Cost Personal Dataset)."
 )
 
-html_temp = """<div style="background-color:#000;padding:10px;border-radius:10px">
-                <h1 style="color:#fff;text-align:center">Medical Cost Prediction App</h1> 
-                <h4 style="color:#fff;text-align:center">Copyright 2025. Delta Seekers Team</h4> 
-                """
+html_temp = 
 
 desc_temp = """ ### Loan Prediction App 
                 This app is used by Credit team for deciding Loan Application
@@ -39,6 +36,10 @@ def main():
         run_ml_app()
 
 def run_ml_app():
+    design = """<div style="padding:15px;">
+                    <h1 style="color:#fff">Loan Eligibility Prediction</h1>
+                </div
+             """
     st.markdown(design, unsafe_allow_html=True)
     
     #Membuat Struktur Form

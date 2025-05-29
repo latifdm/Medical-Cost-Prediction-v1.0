@@ -106,26 +106,24 @@ elif page == "Dashboard":
     st.subheader("Ringkasan Statistik")
     st.dataframe(df.describe(), use_container_width=True)
 
-    st.subheader("Distribusi BMI")
-    st.bar_chart(df["bmi"])
+    col1, col2 = st.columns(2)
+    with col1:
+        st.subheader("Distribusi BMI")
+        st.bar_chart(df["bmi"])
 
-    st.subheader("Penyebaran Biaya vs. Usia")
-    st.scatter_chart(df[["age", "charges"]])
+    with col2:
+        st.subheader("Perbandingan Jumlah Perokok")
+        st.bar_chart(df["smoker"].value_counts())
 
-    st.subheader("Jumlah Perokok")
-    st.bar_chart(df["smoker"].value_counts())
+    col3, col4 = st.columns(2)
+    with col3:
+        st.subheader("Biaya Medis berdasarkan Usia")
+        st.scatter_chart(df[["age", "charges"]])
 
-    st.subheader("Rata-rata Biaya Berdasarkan Region")
-    avg_region = df.groupby("region")["charges"].mean().sort_values()
-    st.bar_chart(avg_region)
-
-    st.subheader("Rata-rata BMI Berdasarkan Status Merokok")
-    avg_bmi_smoker = df.groupby("smoker")["bmi"].mean()
-    st.bar_chart(avg_bmi_smoker)
-
-    st.subheader("Jumlah Anak per Region")
-    children_region = df.groupby("region")["children"].sum()
-    st.bar_chart(children_region)
+    with col4:
+        st.subheader("Jumlah Anak per Region")
+        children_region = df.groupby("region")["children"].sum()
+        st.bar_chart(children_region)
     
     st.subheader("📊 Korelasi antar Fitur Numerik")
     fig, ax = plt.subplots()

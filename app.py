@@ -131,26 +131,23 @@ elif page == "Dashboard":
     fig, ax = plt.subplots()
     sns.heatmap(df.corr(numeric_only=True), annot=True, cmap="coolwarm", ax=ax)
     st.pyplot(fig)
-
-st.subheader("💰 Sebaran Biaya Medis per Region")
-
-fig, ax = plt.subplots()
-sns.boxplot(x="region", y="charges", data=df, ax=ax)
-st.pyplot(fig)
-
-st.subheader("📈 Distribusi Usia Pasien")
-
-fig, ax = plt.subplots()
-sns.histplot(df["age"], bins=10, kde=True, ax=ax, color="skyblue")
-st.pyplot(fig)
-
-st.subheader("🗺️ Proporsi Pasien per Region")
-
-region_counts = df["region"].value_counts()
-fig, ax = plt.subplots()
-ax.pie(region_counts, labels=region_counts.index, autopct="%1.1f%%", startangle=90)
-ax.axis("equal")  # agar pie-nya bulat
-st.pyplot(fig)
+    
+    st.subheader("💰 Sebaran Biaya Medis per Region")
+    fig, ax = plt.subplots()
+    sns.boxplot(x="region", y="charges", data=df, ax=ax)
+    st.pyplot(fig)
+    
+    st.subheader("📈 Distribusi Usia Pasien")
+    fig, ax = plt.subplots()
+    sns.histplot(df["age"], bins=10, kde=True, ax=ax, color="skyblue")
+    st.pyplot(fig)
+    
+    st.subheader("🗺️ Proporsi Pasien per Region")
+    region_counts = df["region"].value_counts()
+    fig, ax = plt.subplots()
+    ax.pie(region_counts, labels=region_counts.index, autopct="%1.1f%%", startangle=90)
+    ax.axis("equal")
+    st.pyplot(fig)
 
 # ---------------------------------------------------------------------------
 # 🔄 Utilitas Pre-processing Input

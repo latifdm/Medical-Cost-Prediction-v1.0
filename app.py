@@ -3,6 +3,8 @@ import streamlit.components.v1 as stc
 import pickle
 import pandas as pd
 import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 st.set_page_config(
     page_title="Medical Cost Prediction", page_icon="💊", layout="centered"
@@ -125,11 +127,30 @@ elif page == "Dashboard":
     children_region = df.groupby("region")["children"].sum()
     st.bar_chart(children_region)
     
-    sns.histplot(df["age"])
-    sns.heatmap(df.corr())
-    df["region"].value_counts().plot.pie()
-    px.scatter(df, x="bmi", y="charges")
-    sns.boxplot(x="region", y="charges")
+    st.subheader("📊 Korelasi antar Fitur Numerik")
+    fig, ax = plt.subplots()
+    sns.heatmap(df.corr(numeric_only=True), annot=True, cmap="coolwarm", ax=ax)
+    st.pyplot(fig)
+
+st.subheader("💰 Sebaran Biaya Medis per Region")
+
+fig, ax = plt.subplots()
+sns.boxplot(x="region", y="charges", data=df, ax=ax)
+st.pyplot(fig)
+
+st.subheader("📈 Distribusi Usia Pasien")
+
+fig, ax = plt.subplots()
+sns.histplot(df["age"], bins=10, kde=True, ax=ax, color="skyblue")
+st.pyplot(fig)
+
+st.subheader("🗺️ Proporsi Pasien per Region")
+
+region_counts = df["region"].value_counts()
+fig, ax = plt.subplots()
+ax.pie(region_counts, labels=region_counts.index, autopct="%1.1f%%", startangle=90)
+ax.axis("equal")  # agar pie-nya bulat
+st.pyplot(fig)
 
 # ---------------------------------------------------------------------------
 # 🔄 Utilitas Pre-processing Input

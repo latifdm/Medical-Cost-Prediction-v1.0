@@ -54,7 +54,7 @@ def run_ml_app():
     weight = right.number_input('Berat Badan')
     children = left.selectbox("Jumlah Anak (dependents)", list(range(0, 6)), index=0)
     region = right.selectbox('Lokasi Tinggal', ("southeast", "southwest", "northeast", "northwest"))
-    button = st.button("Predict")
+    predict_btn = st.button("Predict Medical Cost", type="primary")
 
     # ---------------------------------------------------------------------------
     # 🧮 Fungsi Konversi BMI

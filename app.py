@@ -2,14 +2,6 @@ import streamlit as st
 import streamlit.components.v1 as stc
 import pickle
 
-from sklearn.datasets import make_regression
-df = pd.DataFrame({
-    "age": np.random.randint(18, 65, 100),
-    "bmi": np.random.normal(25, 4, 100),
-    "charges": np.random.uniform(2000, 20000, 100),
-    "smoker": np.random.choice(["yes", "no"], 100),
-})
-
 st.set_page_config(
     page_title="Medical Cost Prediction", page_icon="💊", layout="centered"
 )
@@ -105,8 +97,7 @@ elif page == "Dashboard":
     st.title("📊 Medical Cost Dashboard")
     st.markdown("Analisis data dan visualisasi statistik pasien.")
 
-    # Simulasi data (ganti dengan load CSV kalau ada)
-    df = pd.read_csv("medical_data.csv")  # Pastikan file ini ada
+    df = pd.read_csv("insurance.csv")
 
     st.subheader("Ringkasan Statistik")
     st.dataframe(df.describe(), use_container_width=True)

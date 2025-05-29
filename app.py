@@ -19,10 +19,14 @@ with st.sidebar:
 if page == "Home":
     st.title("💊 Medical Cost Predictor App")
     st.markdown(
-        "Aplikasi Machine Learning ini di buat untuk memprediksi biaya medis tahunan pasien berdasarkan model Regresi yang telah dilatih sebelumnya dengan sumber dataset kaggle."
-        "Data source"
-        "Kaggle: Link https://www.kaggle.com/datasets/mirichoi0218/insurance?resource=download "
+        "Aplikasi Machine Learning ini di buat untuk memprediksi biaya medis tahunan pasien berdasarkan model Regresi yang telah dilatih sebelumnya dengan sumber dataset Medical Cost Personal Datasets Kaggle."
     )
+    st.markdown(
+        "Data Source"
+    )
+    st.markdown(
+        "Kaggle : Link https://www.kaggle.com/datasets/mirichoi0218/insurance?resource=download"
+    )    
 
     # ---------- Team section ----------
     st.subheader("Delta Seekers Team")

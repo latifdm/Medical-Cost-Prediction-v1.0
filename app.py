@@ -26,32 +26,32 @@ if page == "Home":
     st.subheader("Delta Seekers Team")
     members = [
     {
-            "name": "Member 1",
-            "photo": "assets/member1.jpg",  # ganti path sesuai aset
+            "name": "Ahmad Azhar Naufal Farizky",
+            "photo": "profile.svg",  # ganti path sesuai aset
             "ig": "https://instagram.com/member1",
             "li": "https://linkedin.com/in/member1",
         },
         {
-            "name": "Member 2",
-            "photo": "assets/member2.jpg",
+            "name": "Kristina Sarah Yuliana",
+            "photo": "profile.svg",
             "ig": "https://instagram.com/member2",
             "li": "https://linkedin.com/in/member2",
         },
         {
-            "name": "Member 3",
-            "photo": "assets/member3.jpg",
-            "ig": "https://instagram.com/member3",
+            "name": "Latif Dwi Mardani",
+            "photo": "profile.svg",
+            "ig": "https://instagram.com/latifdm",
             "li": "https://linkedin.com/in/member3",
         },
         {
-            "name": "Member 4",
-            "photo": "assets/member4.jpg",
+            "name": "Jalu Prayoga",
+            "photo": "profile.svg",
             "ig": "https://instagram.com/member4",
             "li": "https://linkedin.com/in/member4",
         },
         {
-            "name": "Member 5",
-            "photo": "assets/member5.jpg",
+            "name": "Ayasha Naila Ismunandar",
+            "photo": "profile.svg",
             "ig": "https://instagram.com/member5",
             "li": "https://linkedin.com/in/member5",
         },

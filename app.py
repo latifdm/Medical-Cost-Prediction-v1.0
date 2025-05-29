@@ -47,7 +47,7 @@ def run_ml_app():
     
     #Membuat Struktur Form
     left, right = st.columns((2,2))
-    usia = st.slider("Usia", 18, 64, 30)
+    age = st.slider("Usia", 18, 64, 30)
     sex = left.selectbox('Jenis Kelamin', ('Pria', 'Wanita'))
     smoker = right.selectbox('Apakah Merokok', ('Ya', 'Tidak'))
     height = left.number_input('Tinggi Badan')

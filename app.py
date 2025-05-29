@@ -6,8 +6,8 @@ with open('Logistic_Regression_Model.pkl', 'rb') as file:
     Logistic_Regression_Model = pickle.load(file)
 
 html_temp = """<div style="background-color:#000;padding:10px;border-radius:10px">
-                <h1 style="color:#fff;text-align:center">Loan Eligibility Prediction App</h1> 
-                <h4 style="color:#fff;text-align:center">Made for: Credit Team</h4> 
+                <h1 style="color:#fff;text-align:center">Medical Cost Prediction App</h1> 
+                <h4 style="color:#fff;text-align:center">Copyright 2025. Delta Seekers Team</h4> 
                 """
 
 desc_temp = """ ### Loan Prediction App 
@@ -30,7 +30,7 @@ def main():
 
 def run_ml_app():
     design = """<div style="padding:15px;">
-                    <h1 style="color:#fff">Loan Eligibility Prediction</h1>
+                    <h3 style="color:#fff">Medical Cost Prediction</h3>
                 </div
              """
     st.markdown(design, unsafe_allow_html=True)

@@ -37,24 +37,18 @@ def run_ml_app():
     
     #Membuat Struktur Form
     left, right = st.columns((2,2))
-    gender = left.selectbox('Gender', ('Male', 'Female'))
-    married = right.selectbox('Married', ('Yes', 'No'))
-    dependent = left.selectbox('Dependent', (0,1,2,3))
-    education = right.selectbox('Education', ('Graduate', 'Not Graduate'))
-    self_employed = left.selectbox('Self Employed', ('Yes', 'No'))
-    applicant_income = right.number_input('Applicant Income')
-    coApplicant_income = left.number_input('Co-Applicant Income')
-    loan_amount = right.number_input('Loan Amount')
-    loan_amount_term = left.number_input(label = 'Loan Amount Term',
-                                        min_value = 10, max_value = 360)
-    credit_history = right.selectbox('Credit History', (0.0, 1.0))
-    property_area = st.selectbox('Property Area', ("Rural", "Semiurban", "Urban"))
+    usia = st.slider("Usia", 18, 64, 30)
+    sex = left.selectbox('Jenis Kelamin', ('Pria', 'Wanita'))
+    smoker = right.selectbox('Apakah Merokok', ('Ya', 'Tidak'))
+    tinggi = left.number_input('Tinggi Badan')
+    berat = right.number_input('Berat Badan')
+    children = left.selectbox("Jumlah Anak (dependents)", list(range(0, 6)), index=0)
+    region = right.selectbox('Lokasi Tinggal', ("Southeast", "Southwest", "Northeast", "Northwest"))
     button = st.button("Predict")
 
     #If button is clilcked
     if button: 
-        result = predict(gender, married, dependent, education, self_employed, applicant_income, coApplicant_income
-                         ,loan_amount, loan_amount_term, credit_history, property_area)
+        result = predict(usia, sex, tinggi, berat, smoker, children, region)
         
         if result == 'Eligible':
             st.success(f'You Are {result} for the loan')

@@ -98,6 +98,28 @@ elif page == "Machine Learning App":
         weight = height / 100
         return weight / (height ** 2)
 
+# -----------------------------------------------------------------------------
+# 📊  PAGE — Dashboard
+# -----------------------------------------------------------------------------
+elif page == "Dashboard":
+    st.title("📊 Medical Cost Dashboard")
+    st.markdown("Analisis data dan visualisasi statistik pasien.")
+
+    # Simulasi data (ganti dengan load CSV kalau ada)
+    df = pd.read_csv("medical_data.csv")  # Pastikan file ini ada
+
+    st.subheader("Ringkasan Statistik")
+    st.dataframe(df.describe(), use_container_width=True)
+
+    st.subheader("Distribusi BMI")
+    st.bar_chart(df["bmi"])
+
+    st.subheader("Penyebaran Biaya vs. Usia")
+    st.scatter_chart(df[["age", "charges"]])
+
+    st.subheader("Jumlah Perokok")
+    st.bar_chart(df["smoker"].value_counts())
+
 # ---------------------------------------------------------------------------
 # 🔄 Utilitas Pre-processing Input
 # ---------------------------------------------------------------------------
@@ -160,26 +182,3 @@ except FileNotFoundError:
 # ---------------------------------------------------------------------------
 # 🧮 Prediksi biaya
 # ---------------------------------------------------------------------------
-
-
-# -----------------------------------------------------------------------------
-# 📊  PAGE — Dashboard
-# -----------------------------------------------------------------------------
-elif page == "Dashboard":
-    st.title("📊 Medical Cost Dashboard")
-    st.markdown("Analisis data dan visualisasi statistik pasien.")
-
-    # Simulasi data (ganti dengan load CSV kalau ada)
-    df = pd.read_csv("medical_data.csv")  # Pastikan file ini ada
-
-    st.subheader("Ringkasan Statistik")
-    st.dataframe(df.describe(), use_container_width=True)
-
-    st.subheader("Distribusi BMI")
-    st.bar_chart(df["bmi"])
-
-    st.subheader("Penyebaran Biaya vs. Usia")
-    st.scatter_chart(df[["age", "charges"]])
-
-    st.subheader("Jumlah Perokok")
-    st.bar_chart(df["smoker"].value_counts())

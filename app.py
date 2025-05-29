@@ -59,7 +59,7 @@ if page == "Home":
     cols = st.columns(len(members))
     for col, member in zip(cols, members):
         with col:
-            st.image(member["photo"], width=70)
+            st.image(member["photo"], width=100)
             st.markdown(
                 f"**{member['name']}**  \n"
                 f"[LinkedIn]({member['li']})"

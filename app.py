@@ -124,6 +124,12 @@ elif page == "Dashboard":
     st.subheader("Jumlah Anak per Region")
     children_region = df.groupby("region")["children"].sum()
     st.bar_chart(children_region)
+    
+    sns.histplot(df["age"])
+    sns.heatmap(df.corr())
+    df["region"].value_counts().plot.pie()
+    px.scatter(df, x="bmi", y="charges")
+    sns.boxplot(x="region", y="charges")
 
 # ---------------------------------------------------------------------------
 # 🔄 Utilitas Pre-processing Input

@@ -19,7 +19,7 @@ with st.sidebar:
 if page == "Home":
     st.title("💊 Medical Cost Predictor App")
     st.markdown(
-        "Masukkan informasi pasien untuk memprediksi **biaya medis tahunan** menggunakan model regresi yang telah dilatih sebelumnya (Medical Cost Personal Dataset)."
+        "Aplikasi Machine Learning ini di buat untuk memprediksi biaya medis tahunan ."
     )
 
     # ---------- Team section ----------
@@ -27,32 +27,27 @@ if page == "Home":
     members = [
     {
             "name": "Ahmad Azhar Naufal Farizky",
-            "photo": "profile.svg",  # ganti path sesuai aset
-            "ig": "https://instagram.com/member1",
+            "photo": "profile.svg",
             "li": "https://linkedin.com/in/member1",
         },
         {
             "name": "Kristina Sarah Yuliana",
             "photo": "profile.svg",
-            "ig": "https://instagram.com/member2",
             "li": "https://linkedin.com/in/member2",
         },
         {
             "name": "Latif Dwi Mardani",
             "photo": "profile.svg",
-            "ig": "https://instagram.com/latifdm",
             "li": "https://linkedin.com/in/member3",
         },
         {
             "name": "Jalu Prayoga",
             "photo": "profile.svg",
-            "ig": "https://instagram.com/member4",
             "li": "https://linkedin.com/in/member4",
         },
         {
             "name": "Ayasha Naila Ismunandar",
             "photo": "profile.svg",
-            "ig": "https://instagram.com/member5",
             "li": "https://linkedin.com/in/member5",
         },
     ]
@@ -63,7 +58,7 @@ if page == "Home":
             st.image(m["photo"], width=90, caption=" ")
         with col_info:
             st.markdown(
-                f"**{m['name']}**  \n[Instagram]({m['ig']}) | [LinkedIn]({m['li']})"
+                f"**{m['name']}**  \n[LinkedIn]({m['li']})"
             )
         st.divider()
 

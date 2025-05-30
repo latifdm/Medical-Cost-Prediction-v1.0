@@ -6,6 +6,9 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+with open('gradient_boosting_regressor_model.pkl', 'rb') as file:
+    Gradient_Boosting_Regressor_Model = pickle.load(file)
+
 st.set_page_config(
     page_title="Medical Cost Prediction", page_icon="💊", layout="centered"
 )
@@ -85,7 +88,7 @@ elif page == "Machine Learning App":
     weight = right.number_input('Berat Badan')
     children = left.selectbox("Jumlah Anak", list(range(0, 6)), index=0)
     region = right.selectbox('Lokasi Tinggal', ("southeast", "southwest", "northeast", "northwest"))
-    predict_btn = st.button("Predict Medical Cost", type="primary")
+    button = st.button("Predict Medical Cost")
 
     # ---------------------------------------------------------------------------
     # 🧮 Fungsi Konversi BMI
@@ -140,19 +143,6 @@ def preprocess_input(age, sex, height, weight, children, smoker, region):
 # ---------------------------------------------------------------------------
 # 📦 Load Model (cached)
 # ---------------------------------------------------------------------------
-@st.cache_resource(show_spinner=False)
-def load_model(path: str = "gradient_boosting_regressor_modell.pkl"):
-    """Muat model regressi tersimpan dalam file pickle."""
-    with open(path, "rb") as f:
-        return pickle.load(f)
-
-try:
-    model = load_model()
-except FileNotFoundError:
-    st.error(
-        "⚠️ **model.pkl** tidak ditemukan. Pastikan file model sudah berada di folder yang sama dengan *app.py*."
-    )
-    st.stop()
 
 # ---------------------------------------------------------------------------
 # 🧮 Prediksi biaya

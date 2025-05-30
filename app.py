@@ -193,7 +193,7 @@ def preprocess_input(age, sex, height, weight, children, smoker, region):
 # 📦 Load Model (cached)
 # ---------------------------------------------------------------------------
 @st.cache_resource(show_spinner=False)
-def load_model(path: str = "Logistic_Regression_Model.pkl"):
+def load_model(path: str = "gradient_boosting_regressor_model.pkl"):
     """Muat model regressi tersimpan dalam file pickle."""
     with open(path, "rb") as f:
         return pickle.load(f)
@@ -209,3 +209,20 @@ except FileNotFoundError:
 # ---------------------------------------------------------------------------
 # 🧮 Prediksi biaya
 # ---------------------------------------------------------------------------
+if st.button("Predict Medical Cost", type="primary"):
+        try:
+            model = load_model()
+        except FileNotFoundError:
+            st.error("⚠️  **model.pkl** tidak ditemukan. Letakkan file model di folder yang sama dengan *app.py*.")
+            st.stop()
+
+        input_df = preprocess_input(age, sex, height, weight, children, smoker, region)
+
+        with st.spinner("Menghitung prediksi ..."):
+            prediction = model.predict(input_df)[0]
+
+        st.subheader("💵 Estimasi Biaya Medis Tahunan")
+        st.metric("Charges (USD)", f"${prediction:,.2f}")
+
+        with st.expander("Detail input"):
+            st.dataframe(input_df, use_container_width=True)

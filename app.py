@@ -90,9 +90,7 @@ elif page == "Machine Learning App":
     # ---------------------------------------------------------------------------
     # 🧮 Fungsi Konversi BMI
     # ---------------------------------------------------------------------------
-    def calculate_bmi(height, weight):
-        weight = height / 100
-        return weight / (height ** 2)
+    
 
 # -----------------------------------------------------------------------------
 # 📊  PAGE — Dashboard
@@ -153,8 +151,12 @@ elif page == "Dashboard":
 def preprocess_input(age, sex, height, weight, children, smoker, region):
     """Konversi input user ➜ DataFrame yang kompatibel dengan model."""
 
-    bmi = calculate_bmi(height, weight)
+    def calculate_bmi(height, weight):
+        weight = height / 100
+        return weight / (height ** 2)
 
+    bmi = calculate_bmi(height, weight)
+    
     cols = [
         "age",
         "bmi",

@@ -90,7 +90,90 @@ elif page == "Machine Learning App":
     # ---------------------------------------------------------------------------
     # 🧮 Fungsi Konversi BMI
     # ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# 🔄 Utilitas Pre-processing Input
+# ---------------------------------------------------------------------------
+def preprocess_input(age, sex, height, weight, children, smoker, region):
+    """Konversi input user ➜ DataFrame yang kompatibel dengan model."""
+
+    def calculate_bmi(height, weight):
+        weight = height / 100
+        return weight / (height ** 2)
+
+    bmi = calculate_bmi(height, weight)
     
+    cols = [
+        "age",
+        "bmi",
+        "children",
+        "sex_female",
+        "sex_male",
+        "smoker_no",
+        "smoker_yes",
+        "region_northeast",
+        "region_northwest",
+        "region_southeast",
+        "region_southwest",
+    ]
+
+    data = {
+        "age": age,
+        "bmi": bmi,
+        "children": children,
+        # one-hot encoding — sex
+        "sex_female": 1 if sex == "female" else 0,
+        "sex_male": 1 if sex == "male" else 0,
+        # one-hot encoding — smoker
+        "smoker_no": 1 if smoker == "no" else 0,
+        "smoker_yes": 1 if smoker == "yes" else 0,
+        # one-hot encoding — region
+        "region_northeast": 1 if region == "northeast" else 0,
+        "region_northwest": 1 if region == "northwest" else 0,
+        "region_southeast": 1 if region == "southeast" else 0,
+        "region_southwest": 1 if region == "southwest" else 0,
+    }
+
+    return pd.DataFrame([data])[cols]
+
+
+# ---------------------------------------------------------------------------
+# 📦 Load Model (cached)
+# ---------------------------------------------------------------------------
+@st.cache_resource(show_spinner=False)
+def load_model(path: str = "gradient_boosting_regressor_modell.pkl"):
+    """Muat model regressi tersimpan dalam file pickle."""
+    with open(path, "rb") as f:
+        return pickle.load(f)
+
+try:
+    model = load_model()
+except FileNotFoundError:
+    st.error(
+        "⚠️ **model.pkl** tidak ditemukan. Pastikan file model sudah berada di folder yang sama dengan *app.py*."
+    )
+    st.stop()
+
+# ---------------------------------------------------------------------------
+# 🧮 Prediksi biaya
+# ---------------------------------------------------------------------------
+if st.button("Predict Medical Cost", type="primary"):
+        try:
+            model = load_model()
+        except FileNotFoundError:
+            st.error("⚠️  **model.pkl** tidak ditemukan. Letakkan file model di folder yang sama dengan *app.py*.")
+            st.stop()
+
+        input_df = preprocess_input(age, sex, bmi, children, smoker, region)
+
+        with st.spinner("Menghitung prediksi ..."):
+            prediction = model.predict(input_df)[0]
+
+        st.subheader("💵 Estimasi Biaya Medis Tahunan")
+        st.metric("Charges (USD)", f"${prediction:,.2f}")
+
+        with st.expander("Detail input"):
+            st.dataframe(input_df, use_container_width=True)
 
 # -----------------------------------------------------------------------------
 # 📊  PAGE — Dashboard
@@ -144,87 +227,3 @@ elif page == "Dashboard":
     ax.pie(region_counts, labels=region_counts.index, autopct="%1.1f%%", startangle=90)
     ax.axis("equal")
     st.pyplot(fig)
-
-# ---------------------------------------------------------------------------
-# 🔄 Utilitas Pre-processing Input
-# ---------------------------------------------------------------------------
-def preprocess_input(age, sex, height, weight, children, smoker, region):
-    """Konversi input user ➜ DataFrame yang kompatibel dengan model."""
-
-    def calculate_bmi(height, weight):
-        weight = height / 100
-        return weight / (height ** 2)
-
-    bmi = calculate_bmi(height, weight)
-    
-    cols = [
-        "age",
-        "bmi",
-        "children",
-        "sex_female",
-        "sex_male",
-        "smoker_no",
-        "smoker_yes",
-        "region_northeast",
-        "region_northwest",
-        "region_southeast",
-        "region_southwest",
-    ]
-
-    data = {
-        "age": age,
-        "bmi": bmi,
-        "children": children,
-        # one-hot encoding — sex
-        "sex_female": 1 if sex == "female" else 0,
-        "sex_male": 1 if sex == "male" else 0,
-        # one-hot encoding — smoker
-        "smoker_no": 1 if smoker == "no" else 0,
-        "smoker_yes": 1 if smoker == "yes" else 0,
-        # one-hot encoding — region
-        "region_northeast": 1 if region == "northeast" else 0,
-        "region_northwest": 1 if region == "northwest" else 0,
-        "region_southeast": 1 if region == "southeast" else 0,
-        "region_southwest": 1 if region == "southwest" else 0,
-    }
-
-    return pd.DataFrame([data])[cols]
-
-
-# ---------------------------------------------------------------------------
-# 📦 Load Model (cached)
-# ---------------------------------------------------------------------------
-@st.cache_resource(show_spinner=False)
-def load_model(path: str = "gradient_boosting_regressor_model.pkl"):
-    """Muat model regressi tersimpan dalam file pickle."""
-    with open(path, "rb") as f:
-        return pickle.load(f)
-
-try:
-    model = load_model()
-except FileNotFoundError:
-    st.error(
-        "⚠️ **model.pkl** tidak ditemukan. Pastikan file model sudah berada di folder yang sama dengan *app.py*."
-    )
-    st.stop()
-
-# ---------------------------------------------------------------------------
-# 🧮 Prediksi biaya
-# ---------------------------------------------------------------------------
-if st.button("Predict Medical Cost", type="primary"):
-        try:
-            model = load_model()
-        except FileNotFoundError:
-            st.error("⚠️  **model.pkl** tidak ditemukan. Letakkan file model di folder yang sama dengan *app.py*.")
-            st.stop()
-
-        input_df = preprocess_input(age, sex, bmi, children, smoker, region)
-
-        with st.spinner("Menghitung prediksi ..."):
-            prediction = model.predict(input_df)[0]
-
-        st.subheader("💵 Estimasi Biaya Medis Tahunan")
-        st.metric("Charges (USD)", f"${prediction:,.2f}")
-
-        with st.expander("Detail input"):
-            st.dataframe(input_df, use_container_width=True)

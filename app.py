@@ -147,9 +147,9 @@ def preprocess_input(age, sex, height, weight, children, smoker, region):
 # ---------------------------------------------------------------------------
 # 🧮 Prediksi biaya
 # ---------------------------------------------------------------------------
-if st.button("Predict Medical Cost", type="primary"):
+if st.button("Predict Medical Cost"):
         try:
-            model = load_model()
+            model = Gradient_Boosting_Regressor_Model()
         except FileNotFoundError:
             st.error("⚠️  **model.pkl** tidak ditemukan. Letakkan file model di folder yang sama dengan *app.py*.")
             st.stop()

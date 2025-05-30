@@ -216,7 +216,7 @@ if st.button("Predict Medical Cost", type="primary"):
             st.error("⚠️  **model.pkl** tidak ditemukan. Letakkan file model di folder yang sama dengan *app.py*.")
             st.stop()
 
-        input_df = preprocess_input(age, sex, height, weight, children, smoker, region)
+        input_df = preprocess_input(age, sex, bmi, children, smoker, region)
 
         with st.spinner("Menghitung prediksi ..."):
             prediction = model.predict(input_df)[0]

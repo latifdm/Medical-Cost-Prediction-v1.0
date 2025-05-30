@@ -97,14 +97,13 @@ elif page == "Machine Learning App":
 # ---------------------------------------------------------------------------
 # 🔄 Utilitas Pre-processing Input
 # ---------------------------------------------------------------------------
-def preprocess_input(age, sex, height, weight, children, smoker, region):
-    """Konversi input user ➜ DataFrame yang kompatibel dengan model."""
-
-    def calculate_bmi(height, weight):
+def calculate_bmi(height, weight):
         weight = height / 100
         return weight / (height ** 2)
-
     bmi = calculate_bmi(height, weight)
+    
+def preprocess_input(age, sex, bmi, children, smoker, region):-> pd.DataFrame:
+    """Konversi input user ➜ DataFrame yang kompatibel dengan model.""" 
     
     cols = [
         "age",

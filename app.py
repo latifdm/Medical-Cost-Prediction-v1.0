@@ -15,7 +15,7 @@ st.set_page_config(
 
 with st.sidebar:
     st.markdown("### Menu")
-    page = st.selectbox("", ["Home", "Machine Learning App", "Dashboard"], index=0)
+    page = st.selectbox("", ["Home", "Machine Learning App", "Dashboard"], index=0, label_visibility="collapsed")
 
 
 # -----------------------------------------------------------------------------
